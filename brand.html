@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+		<meta name="viewport" content="width=device-width,minimum-scale=1.0,maximum-scale=1.0,user-scalable=no" />
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
+		<meta http-equiv="x-rim-auto-match" content="none" />
+		<meta name="format-detection" content="telephone=no" />
+		<title>奇思妙想</title>
+		<link rel="stylesheet" href="css/swiper.min.css" />
+		<link rel="stylesheet" href="css/style.css" />
+		<script type="text/javascript" src="js/jquery.js"></script>
+		<script src="js/swiper.min.js"></script>
+
+	</head>
+
+	<body>
+		<!--header-->
+		<div class="header">
+			<div class="container">
+				<div class="logo">
+					<a href="index.html"><img src="images/logo.png"></a>
+				</div>
+				<div class="nav">
+					<ul>
+						<li>
+							<a href="about.html">关于我们</a>
+						</li>
+						<li class="active">
+							<a href="brand.html">成功品牌</a>
+						</li>
+						<li>
+							<a href="news.html">最新动态</a>
+						</li>
+						<li>
+							<a href="contact.html">联系方式</a>
+						</li>
+					</ul>
+				</div>
+				<div class="tel">
+					<img src="images/tel.png">
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+		<!--header end-->
+
+		<!--ny-banner-->
+		<div class="ny-banner">
+			<img src="images/brand-ban1.png" class="icon1">
+			<img src="images/brand-ban2.png" class="icon2">
+			<div class="container">
+				<div class="word">
+					<h3>Successful Brand</h3>
+					<p>人之所以能，是相信能</p>
+				</div>
+				<div class="down">
+					<a href="#brand"><img src="images/down.gif"></a>
+				</div>
+			</div>
+		</div>
+		<!--ny-banner end-->
+
+		<!--brand-nav-->
+		<div class="brand-nav w-1240" id="brand">
+			<ul>
+				<li class="active">
+					<a href="">喵右卫门咖饮</a>
+				</li>
+				<li>
+					<a href="">乱丸</a>
+				</li>
+				<li>
+					<a href="">清蝉泷虎堂</a>
+				</li>
+				<li>
+					<a href="">星国王</a>
+				</li>
+				<li>
+					<a href="">呆禅</a>
+				</li>
+			</ul>
+		</div>
+		<!--brand-nav end-->
+
+		<div class="banner-c">
+			<img src="images/banner-c.jpg">
+		</div>
+		
+		<div class="brand-banner">
+			<div class="fl brand-pic">
+				<div class="swiper-container mywm">
+					<div class="swiper-wrapper">
+						<div class="swiper-slide">
+							<img src="images/brand1.jpg">
+						</div>
+						<div class="swiper-slide">
+							<img src="images/brand1.jpg">
+						</div>
+						<div class="swiper-slide">
+							<img src="images/brand1.jpg">
+						</div>
+					</div>
+					<div class="swiper-pagination mywm-c"></div>
+				</div>
+				
+			</div>
+			<div class="fr  brand-word">
+				<img src="images/lw-logo.png">
+				<h3>2018</h3>
+				<p>清蝉龙虎堂黑糖尚饮主义，坚持手工熬制黑糖 特选特制Q弹波霸珍珠拼配国人口味咖啡豆， 将传统工艺与创新融合进行融合为年轻客群 带来“好咖好欧包”的美好体验!
+				</p>
+				<a href="" class="dj"><span>MORE</span></a>
+			</div>
+		</div>
+
+		<!--footer-->
+		<div class="footer">
+			<div class="foot">
+				<div class="fl">
+					<p class="phone">phone</p>
+					<p class="tel">400-0570-288</p>
+					<p>全球100万门店梦想实践者</p>
+				</div>
+				<div class="fr">
+					<ul>
+						<li>
+							<a href="index.html">首页</a>
+						</li>
+						<li>
+							<a href="about.html">关于我们</a>
+						</li>
+						<li>
+							<a href="brand.html">成功品牌</a>
+						</li>
+						<li>
+							<a href="news.html">最新动态</a>
+						</li>
+						<li>
+							<a href="contact.html">联系我们</a>
+						</li>
+						<div class="clearfix"></div>
+					</ul>
+					<p>copyright©qsmx365 all rights reserved</p>
+				</div>
+				<div class="clearfix"></div>
+			</div>
+		</div>
+
+		<!--导航下拉-->
+		<script type="text/javascript">
+			$(document).scroll(function() {
+				if($(this).scrollTop() > 94) {
+					$(".header").addClass("fix");
+				} else {
+					$(".header").removeClass("fix");
+				}
+			});
+		</script>
+
+		<script type="text/javascript">
+			$(function() {
+				$(".ny-banner .icon1").addClass("active");
+				$(".ny-banner .icon2").addClass("active");
+			});
+		</script>
+
+		<script type="text/javascript">
+			var swiper = new Swiper('.mywm', {
+				autoplay: {
+					delay: 2500,
+					disableOnInteraction: false,
+				},
+				pagination: {
+					el: '.mywm-c',
+					clickable: true,
+					renderBullet: function(index, className) {
+						return '<span class="' + className + '">' + "0" + (index + 1) + '</span>';
+					},
+				},
+			});
+		</script>
+
+	</body>
+
+</html>
