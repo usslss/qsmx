@@ -1,3 +1,8 @@
+<?php
+include_once "php/connect.php";
+$page = "contact";
+?>
+
 <!DOCTYPE html>
 <html>
 
@@ -9,7 +14,7 @@
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta http-equiv="x-rim-auto-match" content="none" />
 		<meta name="format-detection" content="telephone=no" />
-		<title>奇思妙想</title>
+		<?php include_once "php/keywords.php";?>
 		<link rel="stylesheet" href="css/swiper.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="js/jquery.js"></script>
@@ -19,35 +24,9 @@
 	</head>
 
 	<body>
-		<!--header-->
-		<div class="header">
-			<div class="container">
-				<div class="logo">
-					<a href="index.html"><img src="images/logo.png"></a>
-				</div>
-				<div class="nav">
-					<ul>
-						<li>
-							<a href="about.html">关于我们</a>
-						</li>
-						<li>
-							<a href="brand.html">成功品牌</a>
-						</li>
-						<li>
-							<a href="news.html">最新动态</a>
-						</li>
-						<li class="active">
-							<a href="contact.html">联系方式</a>
-						</li>
-					</ul>
-				</div>
-				<div class="tel">
-					<img src="images/tel.png">
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
-		<!--header end-->
+		<!-- header -->
+		<?php include_once "php/header.php";?>
+		<!-- header end -->		
 
 		<!--ny-banner-->
 		<div class="ny-banner contact-c">
@@ -96,37 +75,7 @@
 		</div>
 
 		<!--footer-->
-		<div class="footer">
-			<div class="foot">
-				<div class="fl">
-					<p class="phone">phone</p>
-					<p class="tel">400-0570-288</p>
-					<p>全球100万门店梦想实践者</p>
-				</div>
-				<div class="fr">
-					<ul>
-						<li>
-							<a href="index.html">首页</a>
-						</li>
-						<li>
-							<a href="about.html">关于我们</a>
-						</li>
-						<li>
-							<a href="brand.html">成功品牌</a>
-						</li>
-						<li>
-							<a href="news.html">最新动态</a>
-						</li>
-						<li>
-							<a href="contact.html">联系我们</a>
-						</li>
-						<div class="clearfix"></div>
-					</ul>
-					<p>copyright©qsmx365 all rights reserved</p>
-				</div>
-				<div class="clearfix"></div>
-			</div>
-		</div>
+		<?php include_once "php/footer.php";?>
 
 		<!--导航下拉-->
 		<script type="text/javascript">
@@ -284,3 +233,7 @@
 	</body>
 
 </html>
+
+<?php
+mysqli_close($link);
+?>
