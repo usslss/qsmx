@@ -350,6 +350,7 @@ width:1300px;height:800px;opacity: 1;margin-left: -650px;margin-top:-400px;
 .messages .bd input{float:left;width:600px;height:68px;box-sizing: border-box;border:1px solid #dbdbdb;color:#666666;text-align: center;font-size:22px;line-height: 68px;display:inline-block;margin-right: 40px;}
 .messages .bd input:nth-child(2){margin-right: 0;}
 .messages button{background:#eb010f;color:#fff;font-size:22px;line-height: 68px;height:68px;width:600px;margin:0 auto;text-align: center;cursor: pointer;}
+.buttonApply{background:#eb010f;color:#fff;font-size:22px;line-height: 68px;height:68px;width:600px;margin:0 auto;text-align: center;cursor: pointer;display:block;}
 
 @media screen and (max-width: 1680px) {
 	

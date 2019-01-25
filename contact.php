@@ -67,17 +67,36 @@ $page = "contact";
 		<div class="messages w-1240">
 			<h4>Online Message</h4>
 			<p>您给我们多大信任，我们就给您多大惊喜</p>
+			<form id="applyForm">
 			<div class="bd">
-				<input type="text" placeholder="请告诉我们怎么称呼您!"/>
-				<input type="text" placeholder="这里输入您的手机号码呀！"/>
+				<input type="text" placeholder="请告诉我们怎么称呼您!" name="dataName"/>
+				<input type="text" placeholder="这里输入您的手机号码呀！" name="dataPhone"/>
 			</div>
-			<button>可以提交了！</button>
+			<a href="javascript:void(0)" class="buttonApply" id="applyMsg">可以提交了！</a>	
+			</form>	
 		</div>
 
 		<!--footer-->
 		<?php include_once "php/footer.php";?>
 
 		<!--导航下拉-->
+		<script type="text/javascript">
+		//留言
+        $(function() {
+            $("#applyMsg").click(function() {
+                var cont1 = $("#applyForm").serialize();
+                $.ajax({
+                    url: 'php/apply/msg.php',
+                    type: 'post',
+                    dataType: 'text',
+                    data: cont1,
+                    success: function(result) {
+                        alert(result);
+                    }
+                });
+            });
+        });	
+		</script>
 		<script type="text/javascript">
 			$(document).scroll(function() {
 				if($(this).scrollTop() > 94) {
