@@ -43,16 +43,16 @@ if ($page=='contact'){$class_contact="active";};
 				<div class="nav">
 					<ul>
 						<li class="<?php echo $class_about;?>">
-							<a href="about.html">关于我们</a>
+							<a href="about.php">关于我们</a>
 						</li>
 						<li class="<?php echo $class_brand;?>">
-							<a href="brand.html">成功品牌</a>
+							<a href="brand.php">成功品牌</a>
 						</li>
 						<li class="<?php echo $class_news;?>">
-							<a href="news.html">最新动态</a>
+							<a href="news.php">最新动态</a>
 						</li>
 						<li class="<?php echo $class_contact;?>">
-							<a href="contact.html">联系方式</a>
+							<a href="contact.php">联系方式</a>
 						</li>
 					</ul>
 				</div>
