@@ -82,7 +82,9 @@ if ((isset($next_news_id)==false)){
 		<meta name="apple-mobile-web-app-status-bar-style" content="black" />
 		<meta http-equiv="x-rim-auto-match" content="none" />
 		<meta name="format-detection" content="telephone=no" />
-		<title>奇思妙想</title>
+		<title><?php echo $show_news_title;?> - <?php echo $page_title;?></title>
+		<meta name="keywords" content="<?php echo $page_keywords;?>" />
+		<meta name="description" content="<?php echo $page_description;?>">	
 		<link rel="stylesheet" href="css/swiper.min.css" />
 		<link rel="stylesheet" href="css/style.css" />
 		<script type="text/javascript" src="js/jquery.js"></script>
