@@ -1,8 +1,8 @@
 <?php
 if(isset($_GET["class"])){
     $showClass=$_GET["class"];
-}else{
-    $showClass="all";
+}else if(!isset($showClass)){
+     $showClass="all";   
 }
 
 $sql_nav = "SELECT DISTINCT news_class FROM news WHERE news_website='{$website}'";
