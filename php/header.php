@@ -8,7 +8,7 @@ $class_contact="";
 
 if ($page=='index'){$class_index="active";};
 if ($page=='about'){$class_about="active";};
-if ($page=='brand'){$class_product="brand";};
+if ($page=='brand'){$class_brand="active";};
 if ($page=='news'){$class_news="active";};
 if ($page=='contact'){$class_contact="active";};
 
