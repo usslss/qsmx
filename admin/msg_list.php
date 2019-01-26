@@ -70,8 +70,8 @@ include('php/identify.php');
             ,cols: [[
                 {field:'id', title: 'ID', sort: true, fixed: false,width:100}
                 ,{field:'name', title: '用户名', sort: false, fixed: false,width:180}
-                ,{field:'msg', title: '留言内容', sort: false, fixed: false}
                 ,{field:'phone', title: '手机号', sort: false, fixed: false,width:200}
+                ,{field:'msg', title: '留言内容', sort: false, fixed: false}
                 ,{field:'clickplace', title: '点击处', sort: false, fixed: false,width:130}
                 ,{field:'source', title: '来源网站', sort: true, fixed: false,width:130}
                 ,{field:'addtime', title: '留言时间', sort: true, fixed: false,width:180}
