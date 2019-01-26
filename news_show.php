@@ -117,9 +117,7 @@ if ((isset($next_news_id)==false)){
 		<?php include_once "php/news/news_nav.php";?>
 		<!--brand-nav end-->
 
-		<div class="banner-c">
-			<img src="images/banner-c.jpg">
-		</div>
+		<?php include_once "php/banner.php";?>
 
 		<div class="news-detailed w-1240">
 			<h1><?php echo $show_news_title;?></h1>

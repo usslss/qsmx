@@ -48,9 +48,7 @@ $page = "brand";
 
 		<!--brand-nav end-->
 
-		<div class="banner-c">
-			<img src="images/banner-c.jpg">
-		</div>
+		<?php include_once "php/banner.php";?>
 		
 		<?php include_once "php/brand/brand_show.php";?>	
 

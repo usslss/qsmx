@@ -11,7 +11,8 @@ while ($row = mysqli_fetch_assoc($result)) {
 }
 
 echo <<< EOT
-        <div class="banner"><img src="{$banner_show_url}" alt="{$banner_show_alt}"></div>
-
+		<div class="banner-c">
+			<img src="{$banner_show_url}" alt="{$banner_show_alt}">
+		</div>
 EOT;
 ?>

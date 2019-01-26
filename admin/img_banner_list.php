@@ -1,12 +1,12 @@
 <?php
-include 'php/identify.php';
+include('php/identify.php');
 ?>
 <!DOCTYPE html>
 <html>
-
+  
   <head>
     <meta charset="UTF-8">
-    <title>img_banner_list</title>
+    <title>img_slider_list</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -22,22 +22,22 @@ include 'php/identify.php';
       <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
   </head>
-
+  
   <body>
     <div class="x-nav">
       <span class="layui-breadcrumb">
         <a target="_parent" href="index.php">首页</a>
         <a href="">图片管理</a>
         <a>
-          <cite>网页banner图片</cite></a>
+          <cite>网页banner</cite></a>
       </span>
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>
     </div>
-
+    
     <div class="x-body">
-
-
+    
+    
 
 
 
@@ -52,25 +52,26 @@ include 'php/identify.php';
 
 <script type="text/html" id="barDemo">
     <a class="layui-btn layui-btn-xs " onclick="" lay-event="edit"><i class="layui-icon">&#xe642;</i>编辑</a>
-    <!-- <a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a> -->
+    <!--<a class="layui-btn layui-btn-xs layui-btn-danger" lay-event="del"><i class="layui-icon">&#xe640;</i>删除</a>-->
 </script>
 
 
 <script src="./lib/layui/layui.js"></script>
 <script>
     layui.use('table', function(){
-        var table = layui.table,form = layui.form;
+        var table = layui.table,form = layui.form;        
         //方法级渲染
         table.render({
             elem: '#LAY_table_user'
             ,url: 'php/img/img_query.php'
-            ,where: {img_page: 'all',img_class: 'banner' }
+            ,where: {img_page: 'index',img_class: 'slider' }    
             ,cols: [[
                 {field:'id', title: 'ID', sort: true, fixed: false,width:100}
-                ,{field:'class', title: '图片类别', sort: false, fixed: false,width:180}
-                ,{field:'alt', title: '图片alt', sort: false, fixed: false}
-                ,{field:'url', title: 'img地址', sort: false, fixed: false}
-                ,{field:'wap_url', title: '移动端img地址', sort: false, fixed: false}
+                ,{field:'name', title: '名称', sort: false, fixed: false,width:180}   
+                ,{field:'class', title: '图片类别', sort: false, fixed: false,width:180}             
+                ,{field:'alt', title: '图片alt', sort: false, fixed: false}   
+                ,{field:'url', title: 'img地址', sort: false, fixed: false}       
+                ,{field:'wap_url', title: '移动端img地址', sort: false, fixed: false}           
                 ,{field:'right', title: '操作', width:178,align:'center',toolbar:"#barDemo", fixed: 'right',width:100}
             ]]
             ,id: 'testReload'
@@ -78,12 +79,13 @@ include 'php/identify.php';
             //,height: 600
         });
 
+        
         //监听工具条
         table.on('tool(useruv)', function(obj){
             var data = obj.data;
             if(obj.event === 'edit'){
                 var c='php/img/img_edit.php?id='+data.id;
-                x_admin_show('图片编辑',c,600,530);
+                x_admin_show('图片编辑',c,600,385);
             } else if(obj.event === 'del'){
                 layer.confirm('确定删除这个图片?', function(index){
               	  console.log(data);
@@ -142,7 +144,7 @@ include 'php/identify.php';
 
     layui.use('laydate', function(){
         var laydate = layui.laydate;
-
+                
         //执行一个laydate实例
         laydate.render({
           elem: '#search_startdate' //指定元素
@@ -152,48 +154,48 @@ include 'php/identify.php';
         laydate.render({
           elem: '#search_enddate' //指定元素
         });
-
+      
       });
 
-
+    
 </script>
 
 
-
+  
 </form>
 
 
 
 
+      
+      
+      
+      
+      
 
 
 
 
 
+      
+      
+      
 
+ 
 
+ 
 
+               
+          
+   
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+      
+      
+      
+      
+      
+      
+      
   </body>
 
 </html>
