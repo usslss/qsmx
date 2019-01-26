@@ -3,14 +3,13 @@ include "../connect.php";
 include "../imgcut.php";
 $img_source = $website;
 
+$img_cut_pc = 0;
+$img_cut_wap = 0;
+
 $width_pc = 0;
 $height_pc = 0;
 $width_wap = 0;
 $height_wap = 0;
-//$width_wap_show = 0;
-//$height_wap_show = 0;
-$img_cut_pc=1;
-$img_cut_wap=1;
 
 if (isset($_POST["name"])) {
     $img_name = $_POST["name"];
@@ -18,19 +17,7 @@ if (isset($_POST["name"])) {
     $img_name = "";
 }
 
-if (isset($_POST["en_name"])) {
-    $img_en_name = $_POST["en_name"];
-} else {
-    $img_en_name = "";
-}
-
-if (isset($_POST["alt"])) {
-    $img_alt = $_POST["alt"];
-} else {
-    $img_alt = "";
-}
 $id = $_POST["id"];
-
 
 $sql = "SELECT * FROM img WHERE id='{$id}'";
 $sqlfinish = mysqli_query($link, $sql);
@@ -39,153 +26,113 @@ while ($row = mysqli_fetch_array($sqlfinish)) {
     $before_img_url = '../../../' . $row["url"];
     $before_wap_img_url = '../../../wap/' . $row["wap_url"];
     $before_img_class = $row["class"];
+    $urlForWap = $row["wap_url"];
 }
 
 //判定
 if ($before_img_class == 'index_slider') {
 
+    $img_cut_pc = 1;
+    $img_cut_wap = 1;
 //pc图片的宽高
     $width_pc = 1920;
-    $height_pc = 670;
+    $height_pc = 1080;
 
 //wap图片的宽高
-    $width_wap = 750;
+    $width_wap = 640;
     $height_wap = 400;
 
 }
-$array=explode('_', $before_img_class);
-if ($array[1] == 'banner') {
+if ($before_img_class == 'nav_logo') {
 
-    //pc图片的宽高
-        $width_pc = 1920;
-        $height_pc = 462;
-    
-    //wap图片的宽高
-        $width_wap = 750;
-        $height_wap = 400;
-    
+    $img_cut_pc = 1;
+    $img_cut_wap = 1;
+//pc图片的宽高
+    $width_pc = 230;
+    $height_pc = 60;
+
+//wap图片的宽高
+    $width_wap = 175;
+    $height_wap = 38;
+
 }
 
-if ($before_img_class == 'product_class') {
+if ($before_img_class == 'index_about') {
 
- $img_cut_pc=0;
- $img_cut_wap=0;
-    
+    $img_cut_pc = 1;
+    $img_cut_wap = 1;
+//pc图片的宽高
+    $width_pc = 550;
+    $height_pc = 400;
+
+//wap图片的宽高
+    $width_wap = 550;
+    $height_wap = 400;
+
 }
 
+//获取上传文件的文件类型
+$arr1 = explode("/", $before_img_url);
+$fileNameAll = $arr1[count($arr1) - 1];
+$arr2 = explode(".", $fileNameAll);
+
+$file_type_before = "image/" . $arr2[1];
+if ($file_type_before == "image/jpg") {
+    $file_type_before = "image/jpeg";
+}
+
+//生成复制文件的地址
+$arr3 = explode(".", $urlForWap);
+$copy_img_url = '../../../' . $arr3[0] . '_copy.' . $arr3[1];
+//echo $before_img_url.'---'.$copy_img_url;
+//exit;
 
 //pc端图片上传
 if ($_FILES["file_pc"]["error"]) {
-    //  echo $_FILES["file_pc"]["error"];
-
+    if ($_FILES["file_pc"]["error"] == 1 or $_FILES["file_pc"]["size"] >= 1024000) {
+        echo "请不要上传大于1mb的图片!";
+        exit;
+    }
 } else {
-    //没有出错
-    //加限制条件
-    //判断上传文件类型为png或jpg且大小不超过1024000B
+    //首先判断上传的和之前的文件类型相同
+    if ($_FILES["file_pc"]["type"] != $file_type_before) {
+        echo "请上传同类型图片";
+        exit;
+    }
+
     if (($_FILES["file_pc"]["type"] == "image/png" || $_FILES["file_pc"]["type"] == "image/jpeg") && $_FILES["file_pc"]["size"] < 1024000) {
-        //防止文件名重复
-        $string = $_FILES["file_pc"]["name"];
-        $array = explode('.', $string);
-        $filename_pc_random = rand(1000, 9999);
-        $filename_pc_gbk = date('ymd_His', time()) . "_" . $filename_pc_random . "." . $array[1];
-        $file_pc_url = "../../../picture/" . $filename_pc_gbk;
-        $img_pc_url = "picture/" . $filename_pc_gbk;
-        //转码，把utf-8转成gb2312,返回转换后的字符串， 或者在失败时返回 FALSE。
+        //不进行重命名 而是改名后原地址覆盖
+        $file_pc_url = $before_img_url;
+        $file_wap_url = $before_wap_img_url;
+        //转码，把utf-8转成gb2312,返回转换后的字符串，或者在失败时返回 FALSE。
         $filename_pc = iconv("UTF-8", "gb2312", $file_pc_url);
-        //检查文件或目录是否存在
-        if (file_exists($filename_pc)) {
-            echo "该文件已存在";
-        } else {
-            //保存文件,   move_uploaded_file 将上传的文件移动到新位置
-            move_uploaded_file($_FILES["file_pc"]["tmp_name"], $filename_pc); //将临时地址移动到指定地址
-            //删除之前的文件
-            unlink($before_img_url);
-        }
+
+        //上传文件
+        move_uploaded_file($_FILES["file_pc"]["tmp_name"], $filename_pc); //将临时地址移动到指定地址
+
+        //复制一份用于生成对应的wap版本
+        copy($filename_pc, $copy_img_url);
     } else {
         echo "文件类型不对";
         exit;
     }
     // 裁剪pc图片
-    if (isset($file_pc_url)&($img_cut_pc==1)) {
-
+    if ($img_cut_pc == 1) {
         $source = $file_pc_url;
-
-        // 裁剪后的图片存放目录
         $target = $file_pc_url;
-
         image_center_crop($source, $width_pc, $height_pc, $target);
     }
-
-}
-
-//移动端的图片的上传
-if ($_FILES["file_wap"]["error"]) {
-    //  echo $_FILES["file_wap"]["error"];
-
-} else {
-    //没有出错
-    //加限制条件        到底改不改名字   到底改不改名字   到底改不改名字   到底改不改名字   到底改不改名字   到底改不改名字   到底改不改名字   到底改不改名字   到底改不改名字   到底改不改名字
-    //判断上传文件类型为png或jpg且大小不超过1024000B
-    if (($_FILES["file_wap"]["type"] == "image/png" || $_FILES["file_wap"]["type"] == "image/jpeg") && $_FILES["file_wap"]["size"] < 1024000) {
-        //防止文件名重复
-        $string = $_FILES["file_wap"]["name"];
-        $array = explode('.', $string);
-        $filename_wap_random = rand(1000, 9999);
-        if (isset($filename_pc_random)) {
-            if ($filename_wap_random == $filename_pc_random) {
-                $filename_wap_random = $filename_wap_random + 1;
-            }
-        }
-        $filename_wap_gbk = date('ymd_His', time()) . "_" . $filename_wap_random . "." . $array[1];
-        $file_wap_url = "../../../wap/images/" . $filename_wap_gbk;
-        $img_wap_url = "images/" . $filename_wap_gbk;
-
-        //$file_wap_show_url = "../../../wap/images/showBanner/" . $filename_wap_gbk;
-        //$img_wap_show_url = "images/showBanner/" . $filename_wap_gbk;
-        //转码，把utf-8转成gb2312,返回转换后的字符串， 或者在失败时返回 FALSE。
-        $filename_wap = iconv("UTF-8", "gb2312", $file_wap_url);
-        //检查文件或目录是否存在
-        if (file_exists($filename_wap)) {
-            echo "该文件已存在";
-
-        } else {
-            //保存文件,   move_uploaded_file 将上传的文件移动到新位置
-            move_uploaded_file($_FILES["file_wap"]["tmp_name"], $filename_wap); //将临时地址移动到指定地址
-            //删除之前的文件
-            unlink($before_wap_img_url);
-
-        }
-    } else {
-        echo "文件类型不对";
-        exit;
-    }
-    // 裁剪wap图片
-    if (isset($file_wap_url)&($img_cut_wap==1)) {
-
-        $source = $file_wap_url;
-
-        // 裁剪后的图片存放目录
+    /* 裁剪wap对应图片
+    if ($img_cut_wap == 1) {
+        $source = $copy_img_url;
         $target = $file_wap_url;
         image_center_crop($source, $width_wap, $height_wap, $target);
-
-        //wap产品展示页用图片
-        // 裁剪后的图片存放目录
-        //$target2 = $file_wap_show_url;
-        //image_center_crop($source, $width_wap_show, $height_wap_show, $target2);
-    }
+    }*/
+    //清除之前用于wap复制的拷贝版本
+    unlink($copy_img_url);
 }
 
-if (isset($file_pc_url)) {
-    $sql_img = "UPDATE img SET url='{$img_pc_url}' WHERE id='{$id}'";
-    $sql_img_finish = mysqli_query($link, $sql_img);
-}
-
-if (isset($file_wap_url)) {
-    $sql_img = "UPDATE img SET wap_url='{$img_wap_url}'  WHERE id='{$id}'";
-    $sql_img_finish = mysqli_query($link, $sql_img);
-}
-
-$sql_text = "UPDATE img SET name='{$img_name}', en_name='{$img_en_name}', alt='{$img_alt}' WHERE id='{$id}'";
+$sql_text = "UPDATE img SET name='{$img_name}' WHERE id='{$id}'";
 $sql_text_finish = mysqli_query($link, $sql_text);
 
 echo "修改图片成功";

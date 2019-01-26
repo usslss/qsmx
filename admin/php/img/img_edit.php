@@ -9,28 +9,12 @@ $sqlfinish = mysqli_query($link, $sql);
 
 while ($row = mysqli_fetch_array($sqlfinish)) {
     $name = $row["name"];
-    $en_name = $row["en_name"];
     $img_url = $row["url"];
     $wap_img_url = $row["wap_url"];
-    $alt = $row["alt"];
     $class = $row["class"];
 
 }
 
-$show_name=1;
-$show_en_name=1;
-
-$array=explode('_', $class);
-
-if($array[0]=='index'){
-    $show_name=0;
-    $show_en_name=0;
-}
-
-if($array[1]=='banner'){
-    $show_name=0;
-    $show_en_name=0;
-}
 mysqli_close($link);
 ?>
 
@@ -125,9 +109,6 @@ mysqli_close($link);
 
 <body>
 
-
-
-
     <div class="x-body">
         <form action="img_edit_finish.php" method="post" enctype="multipart/form-data">
 
@@ -136,50 +117,28 @@ mysqli_close($link);
                     <input type="hidden" value="<?php echo $id; ?>" name="id"></input>
                     <tr>
                         <th colspan="1" valign="top">图片类别</th>
-                        <td colspan="1"><?php echo $class; ?>
-                        </td>
+                        <td colspan="1"><?php echo $class; ?></td>
                     </tr>
-<?php 
-if($show_name==1){
-echo <<< EOT
+
+
                     <tr>
                         <th colspan="1">图片名称</th>
-                        <td colspan="1">
+                        <td colspan="3">
                             <div class="layui-input-inline">
                                 <input type="text" style="width:400px" name="name" required="" lay-verify="required"
-                                    autocomplete="off" class="layui-input" value="{$name}">
-                                
+                                    autocomplete="off" class="layui-input" value="<?php echo $name;?>">                                
                             </div>
                         </td>
                     </tr>
-EOT;
-}
-if($show_en_name==1)
-{
-echo <<< EOT
+
+
                     <tr>
-                        <th colspan="1">英文名称</th>
-                        <td colspan="1">
-                            <div class="layui-input-inline">
-                                <input type="text" style="width:400px" name="en_name" required="" lay-verify="required"
-                                    autocomplete="off" class="layui-input" value="{$en_name}">
-                        </td>
-                    </tr>
-EOT;
-}
-?>      
-                    <td colspan="1">图片alt</td>
-                    <td colspan="1"><input type="text" style="width:400px" name="alt" required="" lay-verify="required"
-                            autocomplete="off" class="layui-input" value="<?php echo $alt; ?>"></td>
-                    <tr>
-                    </tr>
-                    <tr>
-                        <th colspan="1" valign="top">PC配图</th>
-                        <td colspan="1">
+                        <th colspan="1" valign="top"></th>
+                        <td colspan="3">
                             <div class="layui-input-inline">
 
                                 <div id="divPreview">
-                                    <img id="imgHeadPhoto1" src="../../../<?php echo $img_url; ?>" style="width: 300px; height: 100px; border: solid 1px #d2e2e2;"
+                                    <img id="imgHeadPhoto1" src="../../../<?php echo $img_url."?version=".rand(10000,99999); ?>" style="width: 300px; height: 100px; border: solid 1px #d2e2e2;"
                                         alt="" />
                                 </div>
 
@@ -189,23 +148,7 @@ EOT;
 
                         </td>
                     </tr>
-                    <tr>
-                        <th colspan="1" valign="top" width="70px">WAP配图</th>
-                        <td colspan="1">
-                            <div class="layui-input-inline">
-
-                                <div id="divPreview">
-                                    <img id="imgHeadPhoto2" src="../../../wap/<?php echo $wap_img_url; ?>" style="width: 300px; height: 100px; border: solid 1px #d2e2e2;"
-                                        alt="" />
-                                </div>
-
-                                <!--file定义输入字段和 "浏览"按钮，供文件上传。-->
-                                <input type="file" name="file_wap" onchange="PreviewImage(this,'imgHeadPhoto2','divPreview');"
-                                    size="20" />
-
-
-                        </td>
-                    </tr>
+        
 
                 </tbody>
             </table>

@@ -85,7 +85,7 @@ include('php/identify.php');
             var data = obj.data;
             if(obj.event === 'edit'){
                 var c='php/img/img_edit.php?id='+data.id;
-                x_admin_show('图片编辑',c,600,530);
+                x_admin_show('图片编辑',c,600,385);
             } else if(obj.event === 'del'){
                 layer.confirm('确定删除这个图片?', function(index){
               	  console.log(data);
