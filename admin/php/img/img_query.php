@@ -26,6 +26,34 @@ if($query_class =="banner"){
 }
 //数量
 $sqlsum = "SELECT count(*) FROM img WHERE class='{$query_page}_{$query_class}' AND website='{$website}'";
+
+
+
+if (isset($_GET["news_class"])){
+    $query_newsclass=$_GET["news_class"];
+    if ($_GET["news_class"]=="品牌名称"){
+        $query_newsclass='%';
+    }
+} else{
+    $query_newsclass='%';
+}
+
+
+if($query_info=="all_brand"){
+//查询
+$sqlmsg = "SELECT * FROM img WHERE class LIKE '{$query_newsclass}' AND website='{$website}'";
+
+//数量
+$sqlsum = "SELECT count(*) FROM img WHERE class LIKE '{$query_newsclass}' AND website='{$website}'";
+    //展示所有产品时 排除其他干扰
+    if ($query_newsclass=='%'){
+        $sqlmsg = "SELECT * FROM img WHERE class != 'index_slider' AND website='{$website}'";
+        $sqlsum = "SELECT count(*) FROM img WHERE class != 'index_slider' AND website='{$website}'";
+    }
+}
+
+
+
 $a = mysqli_query($link, $sqlsum);
 $xx = mysqli_fetch_row($a);
 $sum = $xx[0];

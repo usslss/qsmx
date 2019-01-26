@@ -84,9 +84,9 @@ include('php/identify.php');
                         </a>
                     </li >
                     <li>
-                        <a _href="img_product_class_list.php">
+                        <a _href="img_brand_slider_list.php">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>产品类别图片</cite>
+                            <cite>产品轮播图片</cite>
                         </a>
                     </li >
                     <li>

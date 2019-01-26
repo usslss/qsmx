@@ -3,6 +3,13 @@ include "../connect.php";
 include "../imgcut.php";
 $img_source = $website;
 
+
+if ($_FILES["file_pc"]["error"] == 1 or $_FILES["file_pc"]["size"] >= 1024000) {
+        echo "请不要上传大于1mb的图片!";
+        exit;
+    }
+
+    
 $img_cut_pc = 0;
 $img_cut_wap = 0;
 
@@ -26,7 +33,17 @@ while ($row = mysqli_fetch_array($sqlfinish)) {
     $before_img_url = '../../../' . $row["url"];
     $before_wap_img_url = '../../../wap/' . $row["wap_url"];
     $before_img_class = $row["class"];
-    $urlForWap = $row["wap_url"];
+  //  $urlForWap = $row["wap_url"];
+}
+
+//判定是否为产品轮播图
+$sql_brand = "SELECT * FROM brand";
+$sqlfinish = mysqli_query($link, $sql_brand);
+
+while ($row = mysqli_fetch_array($sqlfinish)) {
+    if($before_img_class==$row["brand_name"]){
+        $before_img_class='brand_slider';
+    }
 }
 
 //判定
@@ -43,13 +60,13 @@ if ($before_img_class == 'index_slider') {
     $height_wap = 400;
 
 }
-if ($before_img_class == 'nav_logo') {
+if ($before_img_class == 'brand_slider') {
 
     $img_cut_pc = 1;
     $img_cut_wap = 1;
 //pc图片的宽高
-    $width_pc = 230;
-    $height_pc = 60;
+    $width_pc = 800;
+    $height_pc = 500;
 
 //wap图片的宽高
     $width_wap = 175;
