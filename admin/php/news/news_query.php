@@ -17,12 +17,20 @@ if (isset($_GET["limit"])){
     $list_show=$_GET["limit"];
 }
 
+if (isset($_GET["news_class"])){
+    $query_newsclass=$_GET["news_class"];
+    if ($_GET["news_class"]=="品牌名称"){
+        $query_newsclass='%';
+    }
+} else{
+    $query_newsclass='%';
+}
 
-$sqlmsg = "SELECT * FROM news WHERE news_website='{$website}'";
+$sqlmsg = "SELECT * FROM news WHERE news_class LIKE '{$query_newsclass}' AND news_website='{$website}'";
 
 
 //数量
-$sqlsum = "SELECT count(*) FROM news WHERE news_website='{$website}'";
+$sqlsum = "SELECT count(*) FROM news WHERE news_class LIKE '{$query_newsclass}' AND news_website='{$website}'";
 $a = mysqli_query($link,$sqlsum);
 $xx = mysqli_fetch_row($a);
 $sum = $xx[0];

@@ -31,7 +31,7 @@ $newsclass_sum=$i;
   
   <head>
     <meta charset="UTF-8">
-    <title>news_page</title>
+    <title>news_list</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -62,7 +62,45 @@ $newsclass_sum=$i;
     
     <div class="x-body">
     
+ <div class="layui-row">
+        <form class="layui-form layui-col-md12 x-so layui-form-pane">
 
+
+
+
+
+          <div class="layui-input-inline">                     
+            <select name="news_class">
+              <option>品牌名称</option>
+<?php			
+if (isset($_GET["news_class"])){
+    $query_news_class=$_GET["news_class"];
+}
+else{
+    $query_news_class="品牌名称";
+}
+
+for ($i=0;$i<$newsclass_sum;$i++){    
+    if($newsarr[$i]["news_class"]==$query_news_class){
+        echo <<< EOT
+        <option selected="selected">{$newsarr[$i]["news_class"]}</option>
+EOT;
+    }
+        else {         
+            echo <<< EOT
+        <option>{$newsarr[$i]["news_class"]}</option>
+EOT;
+        }
+    
+
+}
+?>               
+            </select>
+          </div>
+         
+          <button class="layui-btn"  lay-submit="" lay-filter="sreach"><i class="layui-icon">&#xe615;</i>搜索</button>
+        </form>
+      </div>
 
 <table class="layui-hide" id="LAY_table_user" lay-filter="useruv"></table>
 
@@ -94,12 +132,12 @@ $newsclass_sum=$i;
             elem: '#LAY_table_user'
             ,url: 'php/news/news_query.php'
             ,method: 'get'
-            ,where: {xx:5 }
+            ,where: {news_class: '<?php echo $query_news_class;?>'}
             ,cols: [[
                 {field:'news_id', title: '新闻ID', sort: true, fixed: false,width:100}
                 ,{field:'news_title', title: '新闻标题', sort: false, fixed: false,width:300}
                 ,{field:'news_summary', title: '新闻摘要文字',  sort: false, fixed: false}  
-                //,{field:'news_class', title: '新闻分类', sort: false, fixed: false,width:150}
+                ,{field:'news_class', title: '品牌分类', sort: false, fixed: false,width:150}
                 ,{field:'news_click', title: '点击数量', sort: false, fixed: false,width:100}
                 ,{field:'news_addtime', title: '添加时间', sort: true, fixed: false,width:180}
                 ,{field:'right', title: '操作', width:178,align:'center',toolbar:"#barDemo", fixed: 'right'}
@@ -108,7 +146,6 @@ $newsclass_sum=$i;
             ,page: true
             //,height: 600
         });
-
 
 //js实现条件搜索传值的地方
         

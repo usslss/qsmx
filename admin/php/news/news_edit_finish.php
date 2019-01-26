@@ -50,8 +50,8 @@ if ($_FILES["file_pc"]["error"]) {
 
         $source = $file_pc_url;
 
-        $width = 500; // 裁剪后的宽度
-        $height = 500; // 裁剪后的高度
+        $width = 232; // 裁剪后的宽度
+        $height = 223; // 裁剪后的高度
         // 裁剪后的图片存放目录
         $target = $file_pc_url;
 

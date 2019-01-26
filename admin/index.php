@@ -55,61 +55,21 @@ include('php/identify.php');
     <div class="left-nav">
       <div id="side-nav">
         <ul id="nav">
-<!--
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe723;</i>
-                    <cite>内容管理</cite>
+                    <cite>品牌管理</cite>
                     <i class="iconfont nav_right">&#xe697;</i>
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="website_info.php">
-                            <i class="iconfont">&#xe6a4;</i>
-                            <cite>网站信息</cite>
-                        </a>
-                    </li >
-                    <li>
                         <a _href="product_list.php">
                             <i class="iconfont">&#xe6a7;</i>
-                            <cite>头部导航</cite>
+                            <cite>品牌列表</cite>
                         </a>
                     </li >
-
-                    <li>
-                        <a href="javascript:;">
-                            <i class="iconfont">&#xe69e;</i>
-                            <cite>页面文本</cite>
-                            <i class="iconfont nav_right">&#xe697;</i>
-                        </a>
-                        <ul class="sub-menu">
-                            <li>
-                                <a _href="xxx.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>index/首页</cite>
-                                    
-                                </a>
-                            </li >
-                            <li>
-                                <a _href="xx.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>about/品牌介绍</cite>
-                                    
-                                </a>
-                            </li>
-                            <li>
-                                <a _href="xx.html">
-                                    <i class="iconfont">&#xe6a7;</i>
-                                    <cite>join/加盟介绍</cite>
-                                    
-                                </a>
-                            </li>
-                            
-                        </ul>
-                    </li>
                 </ul>
             </li>
--->
             <li>
                 <a href="javascript:;">
                     <i class="iconfont">&#xe6a8;</i>
@@ -154,21 +114,7 @@ include('php/identify.php');
                 </ul>
             </li>
 
-            <li>
-                <a href="javascript:;">
-                    <i class="iconfont">&#xe723;</i>
-                    <cite>产品管理</cite>
-                    <i class="iconfont nav_right">&#xe697;</i>
-                </a>
-                <ul class="sub-menu">
-                    <li>
-                        <a _href="product_list.php">
-                            <i class="iconfont">&#xe6a7;</i>
-                            <cite>产品列表</cite>
-                        </a>
-                    </li >
-                </ul>
-            </li>
+
 
             <li>
                 <a href="javascript:;">
