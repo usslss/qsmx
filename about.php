@@ -60,32 +60,7 @@ $page = "about";
 		<!--about-company end-->
 
 		<!--about-brand-->
-		<div class="about-brand">
-			<div class="w-1240">
-				<div class="about-title">
-					<h3>Our Brand</h3>
-					<span>旗下品牌</span>
-				</div>
-				<ul>
-					<li>
-						<img src="images/brand-logo1.png">
-					</li>
-					<li>
-						<img src="images/brand-logo2.png">
-					</li>
-					<li>
-						<img src="images/brand-logo3.png">
-					</li>
-					<li>
-						<img src="images/brand-logo4.png">
-					</li>
-					<li>
-						<img src="images/brand-logo1.png">
-					</li>
-					<div class="clearfix"></div>
-				</ul>
-			</div>
-		</div>
+		<?php include_once "php/about/about_brand.php";?>
 		<!--about-brand end-->
 
 		<!--about-cooperation-->
