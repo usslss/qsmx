@@ -4,8 +4,8 @@ include "../imgcut.php";
 $img_source = $website;
 
 
-if ($_FILES["file_pc"]["error"] == 1 or $_FILES["file_pc"]["size"] >= 1024000) {
-        echo "请不要上传大于1mb的图片!";
+if ($_FILES["file_pc"]["error"] == 1 or $_FILES["file_pc"]["size"] >= 2048000) {
+        echo "文件过大,请不要上传大于2mb的图片!";
         exit;
     }
 
@@ -106,8 +106,8 @@ $copy_img_url = '../../../' . $arr3[0] . '_copy.' . $arr3[1];
 
 //pc端图片上传
 if ($_FILES["file_pc"]["error"]) {
-    if ($_FILES["file_pc"]["error"] == 1 or $_FILES["file_pc"]["size"] >= 1024000) {
-        echo "请不要上传大于1mb的图片!";
+    if ($_FILES["file_pc"]["error"] == 1 or $_FILES["file_pc"]["size"] >= 2048000) {
+        echo "文件过大,请不要上传大于2mb的图片!";
         exit;
     }
 } else {
@@ -117,7 +117,7 @@ if ($_FILES["file_pc"]["error"]) {
         exit;
     }
 
-    if (($_FILES["file_pc"]["type"] == "image/png" || $_FILES["file_pc"]["type"] == "image/jpeg") && $_FILES["file_pc"]["size"] < 1024000) {
+    if (($_FILES["file_pc"]["type"] == "image/png" || $_FILES["file_pc"]["type"] == "image/jpeg") && $_FILES["file_pc"]["size"] < 2048000) {
         //不进行重命名 而是改名后原地址覆盖
         $file_pc_url = $before_img_url;
         $file_wap_url = $before_wap_img_url;
