@@ -6,7 +6,7 @@ include('php/identify.php');
   
   <head>
     <meta charset="UTF-8">
-    <title>img_slider_list</title>
+    <title>img_banner_list</title>
     <meta name="renderer" content="webkit">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width,user-scalable=yes, minimum-scale=0.4, initial-scale=0.8,target-densitydpi=low-dpi" />
@@ -64,7 +64,7 @@ include('php/identify.php');
         table.render({
             elem: '#LAY_table_user'
             ,url: 'php/img/img_query.php'
-            ,where: {img_page: 'index',img_class: 'slider' }    
+            ,where: {img_page: 'all',img_class: 'banner' }    
             ,cols: [[
                 {field:'id', title: 'ID', sort: true, fixed: false,width:100}
                 ,{field:'name', title: '名称', sort: false, fixed: false,width:180}   

@@ -74,7 +74,6 @@ if ($msglink->num_rows > 0) {
     while (($row = $msglink->fetch_assoc()) != false) {
         if (($i > $list_head) & ($i <= $list_bottom)) {
             $result = "{$result}" . "{\"id\":\"" . $row["id"] . "\",\"name\":\"" . $row["name"] . "\"," .
-                "\"en_name\":\"" . $row["en_name"] . "\"," .
                 "\"wap_url\":\"" . $row["wap_url"] . "\"," .
                 "\"alt\":\"" . $row["alt"] . "\"," .
                 "\"class\":\"" . $row["class"] . "\"," .

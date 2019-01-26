@@ -48,7 +48,7 @@ $newsclass_sum=$i;
         <a target="_parent" href="index.php">首页</a>
         <a href="">图片管理</a>
         <a>
-          <cite>产品轮播</cite></a>
+          <cite>品牌轮播</cite></a>
       </span>
       <a class="layui-btn layui-btn-small" style="line-height:1.6em;margin-top:3px;float:right" href="javascript:location.replace(location.href);" title="刷新">
         <i class="layui-icon" style="line-height:30px">ဂ</i></a>

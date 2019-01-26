@@ -33,6 +33,16 @@ while ($row = mysqli_fetch_array($sqlfinish)) {
     $before_img_url = '../../../' . $row["url"];
     $before_wap_img_url = '../../../wap/' . $row["wap_url"];
     $before_img_class = $row["class"];
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
+    //移动端上线时 这里 和下面剪切wap图片功能注意恢复
   //  $urlForWap = $row["wap_url"];
 }
 
@@ -45,6 +55,11 @@ while ($row = mysqli_fetch_array($sqlfinish)) {
         $before_img_class='brand_slider';
     }
 }
+//判定是否为一种banner图
+$isBanner = explode("_", $before_img_class);
+if($isBanner[1]=='banner'){
+    $before_img_class='all_banner';
+}
 
 //判定
 if ($before_img_class == 'index_slider') {
@@ -56,8 +71,8 @@ if ($before_img_class == 'index_slider') {
     $height_pc = 1080;
 
 //wap图片的宽高
-    $width_wap = 640;
-    $height_wap = 400;
+    $width_wap = 6666;
+    $height_wap = 6666;
 
 }
 if ($before_img_class == 'brand_slider') {
@@ -69,22 +84,22 @@ if ($before_img_class == 'brand_slider') {
     $height_pc = 500;
 
 //wap图片的宽高
-    $width_wap = 175;
-    $height_wap = 38;
+    $width_wap = 6666;
+    $height_wap = 6666;
 
 }
 
-if ($before_img_class == 'index_about') {
+if ($before_img_class == 'all_banner') {
 
     $img_cut_pc = 1;
     $img_cut_wap = 1;
 //pc图片的宽高
-    $width_pc = 550;
-    $height_pc = 400;
+    $width_pc = 1920;
+    $height_pc = 300;
 
 //wap图片的宽高
-    $width_wap = 550;
-    $height_wap = 400;
+    $width_wap = 6666;
+    $height_wap = 6666;
 
 }
 
@@ -101,8 +116,6 @@ if ($file_type_before == "image/jpg") {
 //生成复制文件的地址
 $arr3 = explode(".", $urlForWap);
 $copy_img_url = '../../../' . $arr3[0] . '_copy.' . $arr3[1];
-//echo $before_img_url.'---'.$copy_img_url;
-//exit;
 
 //pc端图片上传
 if ($_FILES["file_pc"]["error"]) {
