@@ -1,21 +1,17 @@
 <?php
-include_once("../connect.php");
+include_once "../connect.php";
 
-//待加入对输入值的判断 和非中文的鉴定 重复文件的判断
+$brand_id = $_GET["brand_id"];
 
-$product_id=$_GET["product_id"];
+$sql = "SELECT * FROM brand WHERE brand_id='{$brand_id}'";
+$sqlfinish = mysqli_query($link, $sql);
 
-$sql = "SELECT * FROM product WHERE product_id='{$product_id}'";
-$sqlfinish = mysqli_query($link,$sql);
-
-while($row=mysqli_fetch_array($sqlfinish)){
-    $product_name=$row["product_name"];
-    $product_img_url=$row["product_img_url"];
-    $product_wap_img_url=$row["product_wap_img_url"];
-    
+while ($row = mysqli_fetch_array($sqlfinish)) {
+    $brand_name = $row["brand_name"];
+    $brand_logo_url = $row["brand_logo_url"];
+    $brand_logo_mini_url = $row["brand_logo_mini_url"];
+    $brand_logo_large_url = $row["brand_logo_large_url"];
 }
-
-
 
 mysqli_close($link);
 ?>
@@ -24,7 +20,7 @@ mysqli_close($link);
 
 <head>
   <meta charset="utf-8">
-  <title>layui</title>
+  <title>brand_logo_edit</title>
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
@@ -131,35 +127,50 @@ function DataHtml(name, url) {
   
 
 <div class="x-body">
- <form action="product_img_edit_finish.php" method="post" enctype="multipart/form-data">
+ <form action="brand_img_edit_finish.php" method="post" enctype="multipart/form-data">
                 
                 <table class="layui-table" >
                     <tbody >
                
-                <input type="hidden" value="<?php echo $product_id;?>" name="product_id"></input>        
+                <input type="hidden" value="<?php echo $brand_id;?>" name="brand_id"></input>        
                       
                         <tr>
-                            <th valign="top">PC端 配图选择</th>
+                            <th valign="top">Logo配图</th>
                             <td><div class="layui-input-inline">
                             <div id="divPreview">
-                             <img id="imgHeadPhoto1" src="../../../<?php echo $product_img_url;?>" style="width: 300px; height: 100px; border: solid 1px #d2e2e2;" alt="" />
+                             <img id="imgHeadPhoto1" src="../../../<?php echo $brand_logo_url;?>" alt="" />
 							</div>
                        		<!--file定义输入字段和 "浏览"按钮，供文件上传。-->
-    						<input type="file" name="file_pc" onchange="PreviewImage(this,'imgHeadPhoto1','divPreview');" size="20" />
+    						<input type="file" name="file_logo" onchange="PreviewImage(this,'imgHeadPhoto1','divPreview');" size="20" />
     						</td>
     					</tr>    	
                   
                         <tr>
-                            <th valign="top">移动端 配图选择</th>
+                            <th valign="top">Logo配图 小</th>
                             <td><div class="layui-input-inline">
                             
                             <div id="divPreview">
-                            <img id="imgHeadPhoto2" src="../../../wap/<?php echo $product_wap_img_url;?>" style="width: 300px; height: 100px; border: solid 1px #d2e2e2;" alt="" />
+                            <img id="imgHeadPhoto2" src="../../../<?php echo $brand_logo_mini_url;?>" alt="" />
                             </div>
 
                        		<!--file定义输入字段和 "浏览"按钮，供文件上传。-->
     						
-    						<input type="file" name="file_wap" onchange="PreviewImage(this,'imgHeadPhoto2','divPreview');" size="20" />
+    						<input type="file" name="file_logo_mini" onchange="PreviewImage(this,'imgHeadPhoto2','divPreview');" size="20" />
+    						
+    						</td>
+    					</tr>  
+
+                        <tr>
+                            <th valign="top">Logo配图 大</th>
+                            <td><div class="layui-input-inline">
+                            
+                            <div id="divPreview">
+                            <img id="imgHeadPhoto3" src="../../../<?php echo $brand_logo_large_url;?>" alt="" />
+                            </div>
+
+                       		<!--file定义输入字段和 "浏览"按钮，供文件上传。-->
+    						
+    						<input type="file" name="file_logo_large" onchange="PreviewImage(this,'imgHeadPhoto3','divPreview');" size="20" />
     						
     						</td>
     					</tr>  

@@ -63,7 +63,7 @@ include('php/identify.php');
                 </a>
                 <ul class="sub-menu">
                     <li>
-                        <a _href="product_list.php">
+                        <a _href="brand_list.php">
                             <i class="iconfont">&#xe6a7;</i>
                             <cite>品牌列表</cite>
                         </a>
