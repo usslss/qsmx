@@ -1,3 +1,18 @@
+<?php
+include '../identify.php';
+
+$sql_getClass = "SELECT brand_name FROM brand";
+$result1 = mysqli_query($link, $sql_getClass);
+
+$i = 0;
+while ($row = mysqli_fetch_assoc($result1)) {
+    $setClassArr[$i] = $row["brand_name"];
+    $i++;
+}
+
+$setClassSum = $i;
+
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -18,8 +33,8 @@
     <!--这里加载的语言文件会覆盖你在配置项目里添加的语言类型，比如你在配置项目里配置的是英文，这里加载的中文，那最后就是中文-->
     <script type="text/javascript" charset="utf-8" src="../../ueditor/lang/zh-cn/zh-cn.js"></script>
   <!-- 注意：如果你直接复制所有代码到本地，上述css路径需要改成你本地的 -->
-  
-  
+
+
 <script type="text/javascript">
         //js本地图片预览，兼容ie[6-9]、火狐、Chrome17+、Opera11+、Maxthon3
         function PreviewImage(fileObj, imgPreviewId, divPreviewId) {
@@ -61,7 +76,7 @@
                     var firefoxVersion = parseFloat(browserVersion.toLowerCase().match(/firefox\/([\d.]+)/)[1]);
                     if (firefoxVersion < 7) {//firefox7以下版本
                         document.getElementById(imgPreviewId).setAttribute("src", fileObj.files[0].getAsDataURL());
-                    } else {//firefox7.0+                    
+                    } else {//firefox7.0+
                         document.getElementById(imgPreviewId).setAttribute("src", window.URL.createObjectURL(fileObj.files[0]));
                     }
                 } else {
@@ -79,26 +94,52 @@
             return fileObj.value;    //返回路径
         }
     </script>
-  
-  
+
+
 </head>
 <body>
-          
-          
-  
+
+
+
 
 <div class="x-body">
  <form action="news_add_finish.php" method="post" enctype="multipart/form-data">
-                
+
                 <table class="layui-table" >
                     <tbody >
                     <tr>
                             <th width="100" colspan="1">新闻标题</th>
-                            <td colspan="3" ><div class="layui-input-inline">
+                            <td colspan="1" ><div class="layui-input-inline">
                   <input type="text" style="width:400px" name="news_title" required="" lay-verify="required"
                   autocomplete="off" class="layui-input">
               </div></td>
-                        
+
+                                          <th width="100" colspan="1">新闻分类</th>
+                            <td colspan="1" ><div class="layui-input-inline">
+            <select name="news_class">
+              <option>品牌名称</option>
+<?php			
+
+
+for ($i=0;$i<$setClassSum;$i++){    
+    if($i==0){
+        echo <<< EOT
+        <option selected="selected">{$setClassArr[0]}</option>
+EOT;
+    }
+        else {         
+            echo <<< EOT
+        <option>{$setClassArr[$i]}</option>
+EOT;
+        }
+    
+
+}
+?>               
+            </select>
+              </div></td>
+
+
                         <tr>
                             <th colspan="1" width="100">摘要文字</th>
                             <td colspan="3" width="300"><div class="layui-input-inline">
@@ -106,8 +147,8 @@
                   autocomplete="off" class="layui-input"></td>
 
 
-                  
-                  
+
+
 
                   <tr>
                         <th colspan="1" valign="top">PC配图</th>
@@ -154,27 +195,27 @@
 </script></td></tr>
                     </tbody>
                 </table>
-                 
+
                  <input class="layui-btn" type="submit" name="传值" value="添加新闻" />
 
- 
-       
+
+
 
 </form>
 
 
 
 
-</div>          
-          
-          
-          
-          
-          
-          
-          
-          
-          
+</div>
+
+
+
+
+
+
+
+
+
 
 
 <script type="text/javascript">
@@ -189,14 +230,14 @@
         var arr = [];
         var x=document.getElementById("news_title");
         arr.push(UE.getEditor('editor').getContent());
-       
+
         alert("编辑成功");
         $.ajax({
             url: "te2st33.php",
             type: "post",
             data:{"news_all":UE.getEditor('editor').getContent(),"news_title":x.value},
             dataType: "text",
-            
+
 
         });
     }

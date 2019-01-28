@@ -3,11 +3,11 @@ include "../connect.php";
 include "../imgcut.php";
 
 $img_source = $website;
-$news_source = $website;
+
 
 $news_title = htmlspecialchars($_POST["news_title"]);
 $news_summary = htmlspecialchars($_POST["news_summary"]);
-
+$news_class = htmlspecialchars($_POST["news_class"]);
 if (isset($_POST["editorValue"])) {
     $news_all = $_POST["editorValue"];
 } else {
@@ -84,8 +84,6 @@ if ($_FILES["file_wap"]["error"]) {
         $file_wap_url = "../../../wap/images/news/" . $filename_wap_gbk;
         $img_wap_url = "images/news/" . $filename_wap_gbk;
 
-        $file_wap_show_url = "../../../wap/images/news/showBanner/" . $filename_wap_gbk;
-        $img_wap_show_url = "images/news/showBanner/" . $filename_wap_gbk;
         //转码，把utf-8转成gb2312,返回转换后的字符串， 或者在失败时返回 FALSE。
         $filename_wap = iconv("UTF-8", "gb2312", $file_wap_url);
         //检查文件或目录是否存在
@@ -112,14 +110,6 @@ if ($_FILES["file_wap"]["error"]) {
 
         image_center_crop($source, $width, $height, $target);
 
-        //wap产品展示页用图片
-
-        $width2 = 670; // 裁剪后的宽度
-        $height2 = 190; // 裁剪后的高度
-        // 裁剪后的图片存放目录
-        $target2 = $file_wap_show_url;
-
-        image_center_crop($source, $width2, $height2, $target2);
     }
 }
 
@@ -128,9 +118,8 @@ if (!isset($file_pc_url)) {
 }
 if (!isset($file_wap_url)) {
     $img_wap_url = "";
-    $img_wap_show_url = "";
 }
-$sql_news = "INSERT INTO news (news_title, news_summary, news_all, news_source, news_click, news_website,news_img_url,news_wap_img_url,news_wap_show_img_url) VALUES('{$news_title}', '{$news_summary}', '{$news_all}', '{$news_source}', '{$news_click}', '{$website}','{$img_pc_url}','{$img_wap_url}','{$img_wap_show_url}')";
+$sql_news = "INSERT INTO news (news_title, news_summary, news_all, news_class, news_click, news_website,news_img_url,news_wap_img_url) VALUES('{$news_title}', '{$news_summary}', '{$news_all}', '{$news_class}', '{$news_click}', '{$website}','{$img_pc_url}','{$img_wap_url}')";
 $sqlfinish = mysqli_query($link, $sql_news);
 
 echo "添加新闻成功";

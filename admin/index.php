@@ -32,7 +32,7 @@ include('php/identify.php');
             <a href="javascript:;">上传</a>
             <dl class="layui-nav-child"> <!-- 二级菜单 -->
                 <dd><a onclick="x_admin_show('添加新闻','php/add/news_add.php',1200,810)"><i class="iconfont">&#xe6fc;</i>新闻</a></dd>           
-                <dd><a onclick="x_admin_show('添加产品','php/add/product_add.php',850,650)"><i class="iconfont">&#xe6a8;</i>产品</a></dd>
+                <!-- <dd><a onclick="x_admin_show('添加品牌','php/add/product_add.php',850,650)"><i class="iconfont">&#xe6a8;</i>品牌</a></dd> !-->
                 <dd><a onclick="x_admin_show('添加友情链接','php/add/link_add.php',600,260)"><i class="iconfont">&#xe6fc;</i>友情链接</a></dd> 
             </dl>
           </li>
